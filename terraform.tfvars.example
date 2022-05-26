@@ -1,0 +1,10 @@
+#### REQUIRED VARS
+
+gcp_project_name = 
+gcp_region       = 
+circleci_org_id  = 
+
+#### OPTIONAL VARS
+
+#resource_prefix = "CircleCI"
+#debug           = false
