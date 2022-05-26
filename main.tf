@@ -1,20 +1,3 @@
-data "google_project" "project" {}
-
-variable "circleci_org_id" {
-  type = string
-}
-
-variable "resource_prefix" {
-  type    = string
-  default = "CircleCI"
-}
-
-variable "debug" {
-  type        = bool
-  default     = false
-  description = "Grants ServiceAccountUser permission to the role for auth testing purposes."
-}
-
 resource "google_iam_workload_identity_pool" "circleci" {
   provider                  = google-beta
   workload_identity_pool_id = lower("${var.resource_prefix}-oidc-pool")
@@ -50,9 +33,9 @@ resource "google_service_account_iam_binding" "circleci" {
   service_account_id = google_service_account.circleci.name
   role               = "roles/iam.workloadIdentityUser"
   members = [
-    "principalSet://iam.googleapis.com/projects/${data.google_project.project.number}/locations/global/workloadIdentityPools/${google_iam_workload_identity_pool.circleci.workload_identity_pool_id}/*"
+    #"principalSet://iam.googleapis.com/projects/${data.google_project.project.number}/locations/global/workloadIdentityPools/${google_iam_workload_identity_pool.circleci.workload_identity_pool_id}/*"
     #TODO: Narrow scope.  Maybe it's this:
-    #"principalSet://iam.googleapis.com/projects/${data.google_project.project.number}/locations/global/workloadIdentityPools/{google_iam_workload_identity_pool.circleci.workload_identity_pool_id}/attribute.org_id/${var.circleci_org_id}"
+    "principalSet://iam.googleapis.com/projects/${data.google_project.project.number}/locations/global/workloadIdentityPools/{google_iam_workload_identity_pool.circleci.workload_identity_pool_id}/attribute.org_id/${var.circleci_org_id}"
   ]
 }
 
