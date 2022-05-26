@@ -54,11 +54,11 @@ workflows:
           requires: 
             - checkout
       - validate:
-          context: tf-testing
+          context: gcp-tf-testing
           requires: 
             - checkout
       - sandbox-deploy:
-          context: tf-testing
+          context: gcp-tf-testing
           requires:
             - validate
           filters:
@@ -72,6 +72,6 @@ workflows:
           requires:
             - sandbox-deploy
       - sandbox-cleanup:
-          context: tf-testing
+          context: gcp-tf-testing
           requires: 
             - hold

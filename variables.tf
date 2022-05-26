@@ -9,12 +9,12 @@ variable "circleci_org_id" {
 }
 
 variable "gcp_project_name" {
-  type = string
+  type        = string
   description = "Name of GCP project in which to create resources."
 }
 
 variable "gcp_region" {
-  type = string
+  type        = string
   description = "Name of GCP region in which to create resources."
 }
 
