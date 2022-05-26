@@ -10,10 +10,9 @@ Terraform plan to deploy GCP infra necessary for authenticating with GCP using C
 1. Retrieve your organization ID by [logging in to CircleCI](https://app.circleci.com/) and navigating to "Organization Settings".
 2. Rename `terraform.tfvars.example` to `terraform.tfvars` and replace required values
 3. (Optional) In `terraform.tfvars`, change the resource prefix to desired value
-4. Rename `provider.tf.example` to `provider.tf` and enter your GCP region and project name
-5. (Optional, but strongly recommended) Add a [remote state backend](https://www.terraform.io/docs/language/settings/backends/index.html) to store your terraform state
-6. Run `terraform plan` and inspect proposed changes
-7. Run `terraform apply` to apply changes
+4. (Optional, but strongly recommended) Add a [remote state backend](https://www.terraform.io/docs/language/settings/backends/index.html) to store your terraform state
+5. Run `terraform plan` and inspect proposed changes
+6. Run `terraform apply` to apply changes
 
 **Optional:** If you would like to do a sandbox deploy to test the Terraform plan using CircleCI, follow these steps:
 
