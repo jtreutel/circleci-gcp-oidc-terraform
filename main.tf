@@ -11,10 +11,13 @@ resource "google_iam_workload_identity_pool_provider" "circleci" {
   workload_identity_pool_provider_id = lower("${var.resource_prefix}-oidc-prv")
   display_name                       = "${var.resource_prefix} OIDC Auth"
   description                        = "Identity pool provider for CircleCI OIDC authentication"
-  attribute_mapping = {
-    "attribute.org_id" : "assertion.aud",
-    "google.subject" : "assertion.sub"
-  }
+  attribute_mapping = merge(
+    {
+      "attribute.org_id" = "assertion.aud",
+      "google.subject"   = "assertion.sub"
+    },
+    var.custom_attribute_mappings
+  )
   oidc {
     allowed_audiences = ["${var.circleci_org_id}"]
     issuer_uri        = "https://oidc.circleci.com/org/${var.circleci_org_id}"

@@ -18,6 +18,11 @@ variable "gcp_region" {
   description = "Name of GCP region in which to create resources."
 }
 
+variable "custom_attribute_mappings" {
+  type        = map(string)
+  description = "List of custom attribute mappings.  See https://cloud.google.com/iam/docs/workload-identity-federation#mapping."
+}
+
 #-------------------------------------------------------------------------------
 # OPTIONAL VARS
 #-------------------------------------------------------------------------------
