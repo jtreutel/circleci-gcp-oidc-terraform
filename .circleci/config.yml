@@ -16,6 +16,7 @@ jobs:
     steps:
       - checkout
       - run: echo $BASE64_TFVARS | base64 --decode > ./testing.auto.tfvars
+      - run: echo $BASE64_ADC | base64 --decode > ./adc.json
       - persist_to_workspace:
           root: ./
           paths:
