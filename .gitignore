@@ -1,3 +1,4 @@
 testing.auto.tfvars
 .terraform*
 terraform.tfstate*
+key.json
