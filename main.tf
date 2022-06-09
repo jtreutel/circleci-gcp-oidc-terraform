@@ -11,6 +11,7 @@ resource "google_iam_workload_identity_pool_provider" "circleci" {
   workload_identity_pool_provider_id = lower("${var.resource_prefix}-oidc-prv")
   display_name                       = "${var.resource_prefix} OIDC Auth"
   description                        = "Identity pool provider for CircleCI OIDC authentication"
+  attribute_condition                = coalesce(var.wip_provider_attribute_condition, "attribute.org_id=='${var.circleci_org_id}'")
   attribute_mapping = merge(
     {
       "attribute.org_id" = "assertion.aud",

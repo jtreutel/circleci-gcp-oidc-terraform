@@ -8,3 +8,17 @@ circleci_org_id  =
 
 #resource_prefix = "CircleCI"
 #debug           = false
+
+#custom_attribute_mappings = {
+#  "attribute.project_id"  = "assertion['oidc.circleci.com/project-id']"
+#  "attribute.context_ids" = "assertion['oidc.circleci.com/context-ids'][0]"
+#}
+
+#sa_impersonation_filter_attribute = "attribute.project_id"
+#sa_impersonation_filter_value = "01234567-89ab-cdef-0123-4567890abcde"
+
+#wip_provider_attribute_condition = <<-EOF
+#attribute.org_id=='01234567-89ab-cdef-0123-4567890abcde' && 
+#google.subject.matches('org/([[:xdigit:]]{4,12}-?){5}/project/([[:xdigit:]]{4,12}-?){5}/user/76543210-ba98-fedc-3210-edcba0987654')
+#EOF
+#
