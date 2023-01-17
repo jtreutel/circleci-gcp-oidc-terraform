@@ -1,12 +1,10 @@
 resource "google_iam_workload_identity_pool" "circleci" {
-  provider                  = google-beta
   workload_identity_pool_id = lower("${var.resource_prefix}-oidc-pool")
   display_name              = "${var.resource_prefix} OIDC Auth Pool"
   description               = "Identity pool for CircleCI OIDC authentication"
 }
 
 resource "google_iam_workload_identity_pool_provider" "circleci" {
-  provider                           = google-beta
   workload_identity_pool_id          = google_iam_workload_identity_pool.circleci.workload_identity_pool_id
   workload_identity_pool_provider_id = lower("${var.resource_prefix}-oidc-prv")
   display_name                       = "${var.resource_prefix} OIDC Auth"
