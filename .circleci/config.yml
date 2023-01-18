@@ -55,7 +55,7 @@ workflows:
           requires: 
             - checkout
       - validate:
-          context: gcp-tf-testing
+          #context: gcp-tf-testing
           requires: 
             - checkout
       - sandbox-deploy:
