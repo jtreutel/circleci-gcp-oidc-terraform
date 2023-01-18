@@ -37,8 +37,6 @@ Terraform plan to deploy GCP infra necessary for authenticating with GCP using C
 | Name | Default | Description|
 |------|---------|------------|
 |circleci_org_id|none|Your CircleCI org ID.  Can be found under "Organization Settings" in the CircleCI application.|
-|gcp_project_name|none|Name of GCP project in which to create resources.|
-|gcp_region|none|Name of GCP region in which to create resources.|
 
 
 ### Optional
