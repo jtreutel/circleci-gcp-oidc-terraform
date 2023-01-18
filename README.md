@@ -84,3 +84,28 @@ If you choose to automatically create a new service account, you can add a singl
 
 sa_impersonation_filter_attribute = "attribute.project_id"
 sa_impersonation_filter_value = "01234567-89ab-cdef-0123-4567890abcde"
+
+
+## CI/CD Terraform Module Testing
+
+The pipeline config in this project will perform a sandbox deploy/destroy to validate the module.  The prerequsite configuration is as follows:
+
+#### GCP 
+
+- A GCP project
+- A service account in that project with a valid key
+
+#### CircleCI 
+
+The following variables should be configured in a context or at the project level:
+
+| Name | Value   | Description|
+|------|---------|------------|
+|BASE64_SA_KEY|(base-64 string)|Base-64 encoded GCP service account key.|
+|BASE64_TFVARS|(base-64 string)|Base-64 encoded contents of terraform.tfvars for your sandbox deployment target.|
+|GOOGLE_APPLICATION_CREDENTIALS|`key.json`|Path to the SA key file.|
+|GOOGLE_DNS_ZONE_NAME|(varies)|For Terraform GCP auth.|
+|GOOGLE_PROJECT|(varies)|For Terraform GCP auth.|
+|GOOGLE_REGION|(varies)|For Terraform GCP auth.|
+|GOOGLE_ZONE|(varies)|For Terraform GCP auth.|
+
