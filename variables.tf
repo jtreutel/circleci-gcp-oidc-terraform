@@ -8,16 +8,6 @@ variable "circleci_org_id" {
   description = "Your CircleCI org ID.  Can be found under \"Organization Settings\" in the CircleCI application."
 }
 
-variable "gcp_project_name" {
-  type        = string
-  description = "Name of GCP project in which to create resources."
-}
-
-variable "gcp_region" {
-  type        = string
-  description = "Name of GCP region in which to create resources."
-}
-
 #-------------------------------------------------------------------------------
 # OPTIONAL VARS
 #-------------------------------------------------------------------------------
