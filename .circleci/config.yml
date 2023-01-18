@@ -55,7 +55,7 @@ workflows:
           requires: 
             - checkout
       - validate:
-          context: gcp-tf-testing
+          #context: gcp-tf-testing
           requires: 
             - checkout
       - sandbox-deploy:
@@ -66,8 +66,6 @@ workflows:
             branches:
               only:
                 - master
-                - main
-                - dev
       - hold:
           type: approval
           requires:
@@ -76,3 +74,5 @@ workflows:
           context: gcp-tf-testing
           requires: 
             - hold
+
+# VS Code Extension Version: 1.5.1
