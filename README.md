@@ -44,10 +44,10 @@ Terraform plan to deploy GCP infra necessary for authenticating with GCP using C
 | Name | Default | Description|
 |------|---------|------------|
 |resource_prefix|`CircleCI`|Resource prefix added to all resources created by this plan.|
-|existing_service_account_name|||
-|custom_attribute_mappings|||
-|sa_impersonation_filter_attribute|||
-|sa_impersonation_filter_value|||
+|existing_service_account_name|`""`||
+|custom_attribute_mappings|`{}`||
+|sa_impersonation_filter_attribute|`""`| If blank, defaults to `attribute.org_id`|
+|sa_impersonation_filter_value|`""`| If blank, defaults to your CircleCI org ID|
 |debug|`false`|Grants the created service account the `serviceAccountAdmin` role for testing purposes.|
 
 
