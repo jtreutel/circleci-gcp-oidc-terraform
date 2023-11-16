@@ -22,6 +22,7 @@ variable "resource_prefix" {
 variable "custom_attribute_mappings" {
   type        = map(string)
   description = "List of custom attribute mappings.  See https://cloud.google.com/iam/docs/workload-identity-federation#mapping and https://circleci.com/docs2/2.0/openid-connect-tokens#format-of-the-openid-connect-id-token."
+  default     = {}
 }
 
 variable "existing_service_account_name" {
