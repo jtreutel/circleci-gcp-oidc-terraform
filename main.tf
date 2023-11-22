@@ -41,9 +41,9 @@ resource "google_service_account_iam_binding" "circleci" {
 }
 
 resource "google_service_account_iam_binding" "circleci_sa_user" {
-  count              = var.debug == true ? 1 : 0
+  count              = len(var.roles_to_bind)
   service_account_id = google_service_account.circleci[0].name
-  role               = "roles/iam.serviceAccountAdmin"
+  role               = var.roles_to_bind[count]
   members = [
     "serviceAccount:${google_service_account.circleci[0].email}"
   ]
