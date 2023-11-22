@@ -25,9 +25,9 @@ variable "custom_attribute_mappings" {
   default     = {}
 }
 
-variable "existing_service_account_name" {
+variable "existing_service_account_email" {
   type        = string
-  description = "Enter the name of the GCP SA that CircleCI should impersonate.  Leave blank to create a new service account."
+  description = "Enter the email of the GCP SA that CircleCI should impersonate.  Leave blank to create a new service account."
   default     = ""
 }
 
