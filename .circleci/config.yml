@@ -47,7 +47,6 @@ jobs:
       - terraform/destroy
 
 workflows:
-  version: 2
   main:
     jobs:
       - checkout
@@ -57,19 +56,5 @@ workflows:
       - validate:
           requires: 
             - checkout
-      - sandbox-deploy:
-          requires:
-            - validate
-          filters:
-            branches:
-              only:
-                - master
-      - hold:
-          type: approval
-          requires:
-            - sandbox-deploy
-      - sandbox-cleanup:
-          requires: 
-            - hold
 
 # VS Code Extension Version: 1.5.1

@@ -25,16 +25,15 @@ variable "custom_attribute_mappings" {
   default     = {}
 }
 
-variable "existing_service_account_name" {
+variable "existing_service_account_email" {
   type        = string
-  description = "Enter the name of the GCP SA that CircleCI should impersonate.  Leave blank to create a new service account."
+  description = "Enter the email of the GCP SA that CircleCI should impersonate.  Leave blank to create a new service account."
   default     = ""
 }
 
-variable "debug" {
-  type        = bool
-  default     = false
-  description = "Grants ServiceAccountUser permission to the service account for testing purposes."
+variable "roles_to_bind" {
+  type        = list(string)
+  description = "A list of IAM roles to bind to the service account.  e.g. roles/iam.serviceAccountAdmin"
 }
 
 # These two variables can be used to restrict who can impersonate a service account based on the values of the assertions in the CircleCI OIDC token
