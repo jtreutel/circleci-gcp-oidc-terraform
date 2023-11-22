@@ -9,5 +9,3 @@ data "google_service_account" "circleci_access" {
   count      = var.existing_service_account_email == "" ? 0 : 1
   account_id = var.existing_service_account_email
 }
-
-data "google_project" "project" {}
