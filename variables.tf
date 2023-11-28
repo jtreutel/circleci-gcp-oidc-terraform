@@ -32,8 +32,8 @@ variable "existing_service_account_email" {
 }
 
 variable "roles_to_bind" {
-  type        = list(string)
-  description = "A list of IAM roles to bind to the service account.  e.g. roles/iam.serviceAccountAdmin"
+  type        = set(string)
+  description = "A set of IAM roles to bind to the service account.  e.g. roles/iam.serviceAccountAdmin"
 }
 
 # These two variables can be used to restrict who can impersonate a service account based on the values of the assertions in the CircleCI OIDC token

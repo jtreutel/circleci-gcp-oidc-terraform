@@ -31,21 +31,17 @@ resource "google_service_account" "circleci" {
   display_name = "${var.resource_prefix} Pipeline User"
 }
 
-
-resource "google_service_account_iam_binding" "circleci" {
+#Allow CircleCI to impersonate SA
+resource "google_service_account_iam_member" "circleci_impersonation" {
   service_account_id = var.existing_service_account_email == "" ? google_service_account.circleci[0].name : var.existing_service_account_email
   role               = "roles/iam.workloadIdentityUser"
-  members = [
-    "principalSet://iam.googleapis.com/projects/${data.google_project.project.number}/locations/global/workloadIdentityPools/${google_iam_workload_identity_pool.circleci.workload_identity_pool_id}/${local.sa_impersonation_filter_attribute}/${local.sa_impersonation_filter_value}"
-  ]
+  member             = "principalSet://iam.googleapis.com/projects/${data.google_project.project.number}/locations/global/workloadIdentityPools/${google_iam_workload_identity_pool.circleci.workload_identity_pool_id}/${local.sa_impersonation_filter_attribute}/${local.sa_impersonation_filter_value}"
 }
 
-resource "google_service_account_iam_binding" "circleci_sa_user" {
-  count              = length(var.roles_to_bind)
-  service_account_id = google_service_account.circleci[0].name
-  role               = var.roles_to_bind[count.index]
-  members = [
-    "serviceAccount:${google_service_account.circleci[0].email}"
-  ]
-}
+resource "google_project_iam_member" "project" {
+  for_each = var.roles_to_bind
 
+  project = data.google_project.project.project_id
+  role    = each.value
+  member  = "serviceAccount:${var.existing_service_account_email == "" ? google_service_account.circleci[0].email : var.existing_service_account_email}"
+}
