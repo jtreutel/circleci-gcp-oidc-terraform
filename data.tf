@@ -5,7 +5,7 @@ locals {
   sa_impersonation_filter_value     = var.sa_impersonation_filter_value == "" ? var.circleci_org_id : var.sa_impersonation_filter_value
 }
 
-data "google_service_account" "circleci_access" {
+data "google_service_account" "existing_sa" {
   count      = var.existing_service_account_email == "" ? 0 : 1
   account_id = var.existing_service_account_email
 }

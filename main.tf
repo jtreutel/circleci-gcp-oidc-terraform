@@ -33,7 +33,7 @@ resource "google_service_account" "circleci" {
 
 #Allow CircleCI to impersonate SA
 resource "google_service_account_iam_member" "circleci_impersonation" {
-  service_account_id = var.existing_service_account_email == "" ? google_service_account.circleci[0].name : var.existing_service_account_email
+  service_account_id = var.existing_service_account_email == "" ? google_service_account.circleci[0].name : data.google_service_account.existing_sa.name
   role               = "roles/iam.workloadIdentityUser"
   member             = "principalSet://iam.googleapis.com/projects/${data.google_project.project.number}/locations/global/workloadIdentityPools/${google_iam_workload_identity_pool.circleci.workload_identity_pool_id}/${local.sa_impersonation_filter_attribute}/${local.sa_impersonation_filter_value}"
 }
@@ -43,5 +43,5 @@ resource "google_project_iam_member" "project" {
 
   project = data.google_project.project.project_id
   role    = each.value
-  member  = "serviceAccount:${var.existing_service_account_email == "" ? google_service_account.circleci[0].email : var.existing_service_account_email}"
+  member  = "serviceAccount:${var.existing_service_account_email == "" ? google_service_account.circleci[0].email : data.google_service_account.existing_sa.email}"
 }
