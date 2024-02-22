@@ -9,7 +9,7 @@ output "GOOGLE_PROJECT_NUMBER" {
 }
 
 output "OIDC_SERVICE_ACCOUNT_EMAIL" {
-  value       = var.existing_service_account_email == "" ? google_service_account.circleci[0].email : var.existing_service_account_email
+  value       = var.existing_service_account_email == "" ? google_service_account.circleci[0].email : data.google_service_account.existing_sa[var.existing_service_account_email].email
   description = "OIDC service account ID."
 }
 

@@ -5,7 +5,9 @@ locals {
   sa_impersonation_filter_value     = var.sa_impersonation_filter_value == "" ? var.circleci_org_id : var.sa_impersonation_filter_value
 }
 
-data "google_service_account" "circleci_access" {
-  count      = var.existing_service_account_email == "" ? 0 : 1
+data "google_service_account" "existing_sa" {
+  #count      = var.existing_service_account_email == "" ? 0 : 1
+  for_each = var.existing_service_account_email == "" ? toset([]) : toset([var.existing_service_account_email])
+
   account_id = var.existing_service_account_email
 }
