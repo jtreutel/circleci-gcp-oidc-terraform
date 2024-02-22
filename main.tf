@@ -26,8 +26,7 @@ resource "google_iam_workload_identity_pool_provider" "circleci" {
 
 
 resource "google_service_account" "circleci" {
-  #count        = var.existing_service_account_email == "" ? 1 : 0
-  for_each = toset([var.existing_service_account_email])
+  count        = var.existing_service_account_email == "" ? 1 : 0
 
   account_id   = lower("${var.resource_prefix}-oidc-acct")
   display_name = "${var.resource_prefix} Pipeline User"
