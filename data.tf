@@ -7,7 +7,7 @@ locals {
 
 data "google_service_account" "existing_sa" {
   #count      = var.existing_service_account_email == "" ? 0 : 1
-  for_each = toset([ var.existing_service_account_email ])
+  for_each = toset([var.existing_service_account_email])
 
   account_id = var.existing_service_account_email
 }
