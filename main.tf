@@ -45,5 +45,5 @@ resource "google_project_iam_member" "project" {
 
   project = data.google_project.project.project_id
   role    = each.value
-  member  = "serviceAccount:${var.existing_service_account_email == "" ? google_service_account.circleci[0].email : data.google_service_account.existing_s[var.existing_service_account_email].email}"
+  member  = "serviceAccount:${var.existing_service_account_email == "" ? google_service_account.circleci[0].email : data.google_service_account.existing_sa[var.existing_service_account_email].email}"
 }
