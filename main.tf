@@ -40,7 +40,10 @@ resource "google_service_account_iam_member" "circleci_impersonation" {
 }
 
 resource "google_project_iam_member" "project" {
-  for_each = var.roles_to_bind
+  for_each = concat(
+    toset(["roles/iam.serviceAccountUser", "roles/iam.serviceAccountOpenIdTokenCreator"]),
+    var.roles_to_bind
+  )
 
   project = data.google_project.project.project_id
   role    = each.value
