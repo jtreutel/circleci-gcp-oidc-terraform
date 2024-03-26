@@ -8,6 +8,11 @@ variable "circleci_org_id" {
   description = "Your CircleCI org ID.  Can be found under \"Organization Settings\" in the CircleCI application."
 }
 
+variable "project_id" {
+  type        = string
+  description = "Your Google Project ID."
+}
+
 #-------------------------------------------------------------------------------
 # OPTIONAL VARS
 #-------------------------------------------------------------------------------
