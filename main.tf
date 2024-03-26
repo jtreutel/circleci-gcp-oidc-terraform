@@ -42,7 +42,7 @@ resource "google_service_account_iam_member" "circleci_impersonation" {
 resource "google_project_iam_member" "project" {
   for_each = var.roles_to_bind
 
-  project = data.google_project.project.project_id
+  project = var.project_id
   role    = each.value
   member  = "serviceAccount:${var.existing_service_account_email == "" ? google_service_account.circleci[0].email : data.google_service_account.existing_sa[var.existing_service_account_email].email}"
 }
